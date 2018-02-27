@@ -48,3 +48,30 @@ bedtools merge -i chr${i}_outside_ensemble_rm_phastConsEl.bed > chr${i}_outside_
 cd ..;
 done;
 ```
+
+## Step 2: Remove sites near genes that could be affected by linked selection
+* Scripts for this part is under `SexBiased/filter_nucleotide_sites/2_rm_sites_under_linked_sel`
+
+**1. Generate tentative neutral site**
+
+a. Generate a 1 nucleotide per line (1-based coordinate) that contains the tentative neutral sites
+
+* Use the script `generate_tentative_neutral_sites.py`. See wrapper script `wrapper_generate_tentative_neutral_sites.sh` for how to specify inputs and outputs.
+
+b. Generate a file that contain the START and END of each ensemble genes in 1-based (START and END are on separate line)
+
+* Use the script `generate_1_based_ensemble.py`.
+
+c. Concat output files from **a** and **b**
+
+```
+cd
+outputs/obtain_putatively_neutral_regions
+
+for i in {1..38} X; do 
+cd chr${i}; 
+cat chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_1_based.txt chr${i}_ensemble_clean_sort_1_based.txt > chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_ensemble_1_based.txt; 
+cd ..; 
+done;
+```
+
