@@ -75,3 +75,35 @@ cd ..;
 done;
 ```
 
+**2. Compute genetic distance (in cM) to the nearest gene for each tentative neutral site**
+
+a. Interpolate genetic distance
+
+* Since the genetic map has the genetic distance for specific sites, we need to compute the genetic distance for the sites of our interest. We will do this by interpolation. 
+
+* Use the script `interpolate_genetic_distance_canFam.py`. See wrapper script `wrapper_interpolate_genetic_distance_canFam.sh` for how to specify inputs and outputs.
+
+b. Find the nearest gene for each tentative neutral site (by using bedtools closet tool)
+
+* First, convert the interpolated genetic map file that were produced from step **a** above to 0-based, because the BED file format is 0-based. 
+
+```
+cd outputs/obtain_putatively_neutral_regions
+
+for i in {1..38} X; do
+awk '{print $1-1"\t"$2}' chr${i}/chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_ensemble_1_based_cM.txt > chr${i}/chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_ensemble_0_based_cM.txt
+done
+```
+* Second, convert the tentative neutral sites to BED file format (0-based). 
+  - Use the script `convert_tentative_neutral_sites_to_BED_0_based.py`. See wrapper script `wrapper_convert_tentative_neutral_sites_to_BED_0_based.sh` for how to specify inputs and outputs.
+  - Sort:
+  ```
+  for i in {1..38} X; do
+  sort -n -k 2,2 chr${i}/chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_0_based.bed >   chr${i}/chr${i}_outside_ensemble_rm_phastConsEl_tentative_neutral_site_0_based_sort.bed
+  ```
+  
+* Third, find the nearest genes.
+  - Use the script `find_nearest_genes.sh`. See wrapper script `wrapper_find_nearest_genes.sh` for how to specify inputs and outputs.
+  
+* Fourth, compute genetic distance (cM) between each tentative neutral site and the nearest gene.
+  - Use the script `find_min_gen_dist.py`. See wrapper script `wrapper_find_min_gen_dist.sh` for how to specify inputs and outputs.
