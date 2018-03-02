@@ -118,5 +118,10 @@ done
 
 * Use the script `get_dog_cat_divergence_alignable.py`. See wrapper script `wrapper_get_dog_cat_divergence_alignable.sh` for how to specify inputs and outputs.
 
+## Step 4: Generate BED files to be used for all analyses
 
+* Intersect these files:
+  - BED files that represent regions of the genome that are outside of genes, outside of conserved regions, far away from genes as defined by multiple thresholds (no cM cutoff, >0.2 cM, >0.4 cM, >0.6 cM, >0.8 cM, and >1 cM).
+  - BED files that represent regions of the genome that are high in quality from whole genome sequencing
+  - BED files that represent regions of the genome that are alignable between dog and cat
  
