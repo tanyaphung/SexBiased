@@ -114,4 +114,9 @@ done
     - Extract out tentative neutral sites where distance to the nearest gene is greater than the cutoff (use `awk`)
     - Extract out just the coordinates and merge to get the final BED file
     
-    
+## Step 3: Identify sites that are alignable between dog and cat
+
+* Use the script `get_dog_cat_divergence_alignable.py`. See wrapper script `wrapper_get_dog_cat_divergence_alignable.sh` for how to specify inputs and outputs.
+
+
+ 
