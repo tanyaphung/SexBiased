@@ -107,3 +107,11 @@ done
   
 * Fourth, compute genetic distance (cM) between each tentative neutral site and the nearest gene.
   - Use the script `find_min_gen_dist.py`. See wrapper script `wrapper_find_min_gen_dist.sh` for how to specify inputs and outputs.
+  
+* Fifth, filter based on genetic distance (cM)
+  - Keep sites whose genetic distance to the nearest genes is greater than 0 cM, 0.2 cM, 0.4 cM, 0.6 cM, 0.8 cM, and 1 cM.
+  - Use the script `filter_based_on_cM.sh`. The steps are:
+    - Extract out tentative neutral sites where distance to the nearest gene is greater than the cutoff (use `awk`)
+    - Extract out just the coordinates and merge to get the final BED file
+    
+    
