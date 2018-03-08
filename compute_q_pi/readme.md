@@ -17,3 +17,35 @@
   ```
 * To compute dog-cat divergence, use the script `compute_divergence.py`. 
   - See wrapper script `wrapper_compute_dog_cat_divergence.sh` for how to specify inputs and outputs.
+
+## Step 3: Compute uncorrected and corrected diversity and X/A diveristy ratio
+
+* See the script `3_compute_corrected_pi/compute_corrected_diversity.R` for how to compute the following statistics for a population:
+  - Uncorrected and corrected diversity on the X chromosome
+  - Uncorrected and corrected diversity on the autosomes
+  - Uncorrected and corrected X/A diversity ratio
+  - Dog-cat divergence
+  
+## Step 4: Construct 95% confidence interval by bootstrapping
+**1. Prepare the empirical data to generate bootstraps on**
+
+* We want to generate the bootstraps for diversity and divergence using the same regions. So, we need to merge the divesity output files and the divergence output files. 
+
+```
+pwd
+/u/home/p/phung428/nobackup-kirk/tanya_data/Sex_Biased_Demography/scripts/compute_ci/compute_ci_diversity_divergence
+
+./merge_diversity_divergence.sh
+```
+
+**2. Generate bootstraps**
+* Use the script `4_construct_ci/generate_bootstraps.py`. 
+* See wrapper script `wrapper_generate_bootstraps.sh` for how to specify inputs and outputs. Note that if one is to run this, I would suggest running it as an array jobs with a few replicates at a time, because it does take sometime to generate the bootstraps.
+
+**3. Remove PAR from chrX in the empirical data and in each bootstrap**
+* Use the script `4_construct_ci/rm_PAR_emp_bootstraps.sh`.
+
+**4. Compute 95% CI**
+
+* Use the script `4_construct_ci/compute_ci.py`
+  - See wrapper script `wrapper_compute_ci.sh` for how to specify inputs and outputs
