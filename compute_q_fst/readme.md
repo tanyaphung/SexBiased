@@ -28,7 +28,7 @@
 * Use the script `3_construct_ci/generate_bootstrap_vcf.py`.
   - See wrapper script `wrapper_generate_bootstrap_vcf.sh` for how to specify inputs and outputs.
 
-**3. Sort the bootstrapped VCF files
+**3. Sort the bootstrapped VCF files**
 
 * Use the script `3_construct_ci/picard_sort_vcf.sh`.
 
