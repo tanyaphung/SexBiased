@@ -9,7 +9,7 @@ do
 for i in {1..1000}
 do
 
-cat outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/chrX/cutoff_${cutoff}_${pair}_chrX_bootstrap_${i}_fst.txt >> outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/chrX/cutoff_${cutoff}_${pair}_chrX_bootstrap_all_fst.txt
+cat outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/chrX/cutoff_${cutoff}_${pair}_chrX_bootstrap_${i}_fst.txt >> outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/autosomes/cutoff_${cutoff}_${pair}_autosomes_bootstrap_all_fst.txt
 
 cat outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/autosomes/cutoff_${cutoff}_${pair}_autosomes_bootstrap_${i}_fst.txt >> outputs/compute_q_fst/construct_ci/bootstrap_fst/cutoff_${cutoff}/${pair}/autosomes/cutoff_${cutoff}_${pair}_autosomes_bootstrap_all_fst.txt
 
