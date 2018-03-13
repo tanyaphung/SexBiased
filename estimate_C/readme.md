@@ -57,3 +57,23 @@
 * When running `./fastsimcoal_script.sh`, a directory called `GS_bottleneck` is created where the file of interest is `GS_bottleneck_MAFpop0.obs` that contains the SFS for 100000 observations (because we specified in the `fastsimcoal_script.sh` to do 100000 replicates. For each bin of the SFS, averaging across 100000 replicates would give you the count for that bin.
 
 * I repeated this procedure for each population, for each threshold, and for each grid value of C.
+
+## Step 5: Access the fit
+**1. Compute Poisson likelihood to compare the empirical SFS and simulated SFS**
+
+* See the script `5_access_fit/compute_loglikelihood.R` for an example for the German Shepherd population:
+  - For the autosomes, comment out the X chromosome calculations (line 40 to 67):
+    + Usage: Rscript compute_loglikelihood.R /path/to/A/empirical/ /path/to/A/sim
+  - For the X chromosome, comment out the autosomes calculations (line 21 to 37):
+    + Usage: Rscript compute_loglikelihood.R /path/to/directory/ /filename/of/X/empirical/ /filename/of/X/sim/ /outfile/end/in/csv/ /value/of/C/
+  - **NOTES:** for the other population, be sure to modify `emp_counts` and `sim_counts` to reflect the number of bins for that population. 
+  
+**2. Compute diversity from SFS**
+
+* See the script `5_access_fit/compute_diversity_from_SFS.R` for an example for the German Shepherd population:
+  - Usage: Rscript compute_diversity_from_SFS.R /path/to/A/empirical/ /path/to/A/sim/ /path/to/X/empirical/ /path/to/X/sim/with/null/C/ /path/to/X/sim/with/best/C/
+ 
+**3. Compute likelihood ratio test**
+
+* See the script `5_access_fit/compute_LRT.R`
+  
