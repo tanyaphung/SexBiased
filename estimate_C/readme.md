@@ -5,7 +5,7 @@
 * Only interested in the variants that are outside of genes, outside of conserved regions, far away from genes as defined by multiple thresholds, high in quality from whole genome sequencing, and alignable between dog and cat. See Step 4 in `filter_nucleotide_sites`.
 
 * Use the script `1_obtain_SFS/subset_VCF.sh`.
-  - **Notes: **for the X chromosome, the PAR is removed.
+  - **Notes: ** for the X chromosome, the PAR is removed.
   
 **2. Use VCFtools to obtain the genotype from the VCF files**
 
