@@ -38,7 +38,22 @@
   - `fastsimcoal_script.sh`
   - `GS_bottleneck.tpl`: the template file. Sample size is the number of haploid (here, since there are 4 German Shepherd individuals, sample size is equal to 8). Mutation rate is the autosomal mutation rate computed from dog-cat divergence as in **Step 2** above.
   - `GS_bottleneck.est`: the estimation file
-  - `GS_bottleneck_MAFpop0.obs`: specifying the site frequency spectrum in counts.
-* The inferred demographic parameters that yield the highest likelihood are found in Phung et al. (in prepaparation) Supplementary Table 5.
+  - `GS_bottleneck_MAFpop0.obs`: specifying the site frequency spectrum in counts (for autosomes)
+* The inferred demographic parameters that yield the highest likelihood are found in Phung et al. (in prep) Supplementary Table 5.
 
+## Step 4: Infer C (NX/NA ratio)
 
+* I used fastsimcoal2 to simulate the site frequency spectrum using the inferred demographic parameters from the autosomes (**Step 3** above) for the X chromosome. 
+* Included in the folder `4_infer_C` is how to prepare inputs and outputs to generate the SFS for the German Shepherd population using >0.4 cM as the threshold, and setting C to be equal to 0.75:
+  - `GS_bottleneck_MAFpop0.obs`: specifying the site frequency spectrum in counts (for the X chromosome)
+  - `GS_bottleneck.par`: this is the parameter file that is an output from **Step 3** above. After running the `fastsimcoal_script.sh` script in **Step 3**, a folder called `GS_bottleneck` is generated where the file `GS_bottleneck_maxL.par` specifying demographic parameters that resulted in the highest likelihood. One would need to change the file name to `GS_bottleneck.par`. In addition:
+    + Replace the population effect sizes to be match that for the X chromosome. For example, the inferred population effectize sizes from the autosomes was 16235. Here, we set C to be equal to 0.75, and so the population effective sizes from the X chromosome is 0.75*16235 = 12176.25.
+    + Replace the **data type** to be SNP instead of FREQ.
+    + Replace the **num loci** to be equal to the total number of sites with that threshold. 
+    + Replace the **mut rate** to be that for the X chromosome
+    
+  - `fastsimcoal_script.sh`
+  
+* When running `./fastsimcoal_script.sh`, a directory called `GS_bottleneck` is created where the file of interest is `GS_bottleneck_MAFpop0.obs` that contains the SFS for 100000 observations (because we specified in the `fastsimcoal_script.sh` to do 100000 replicates. For each bin of the SFS, averaging across 100000 replicates would give you the count for that bin.
+
+* I repeated this procedure for each population, for each threshold, and for each grid value of C.
