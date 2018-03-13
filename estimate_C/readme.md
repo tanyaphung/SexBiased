@@ -30,3 +30,15 @@
 
 * Use the script `2_compute_mutation_rates/compute_mu_from_divergence.R`
 
+## Step 3: Infer demographic parameters using the SFSs on the autosomes
+
+* I used fastsimcoal2 (Excoffier, L., Dupanloup, I., Huerta-Sánchez, E., Sousa, V.C., and M. Foll (2013) Robust demographic inference from genomic and SNP data. PLOS Genetics, 9(10):e1003905.) to infer demographic parameters using the autosomal site frequency spectrum.
+* I inferred the demographic parameters for each population and for multiple thresholds of defining putatively neutral regions (>0.4 cM, >0.6 cM, >0.8 cM, >1 cM). 
+* Included in the folder `3_infer_demographic_parameters` is how to prepare inputs to infer demographic parameters for the German Shepherd population using >0.4 cM as the threshold:
+  - `fastsimcoal_script.sh`
+  - `GS_bottleneck.tpl`: the template file. Sample size is the number of haploid (here, since there are 4 German Shepherd individuals, sample size is equal to 8). Mutation rate is the autosomal mutation rate computed from dog-cat divergence as in **Step 2** above.
+  - `GS_bottleneck.est`: the estimation file
+  - `GS_bottleneck_MAFpop0.obs`: specifying the site frequency spectrum in counts.
+* The inferred demographic parameters that yield the highest likelihood are found in Phung et al. (in prepaparation) Supplementary Table 5.
+
+
