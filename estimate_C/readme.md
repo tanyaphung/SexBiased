@@ -25,3 +25,8 @@
 * Since I generated the counts for the SFS for each chromosome separately, need to add up the counts across 38 autosomal chromosomes:
   - Use the script `1_obtain_SFS/tabulate_foldedSFS.py`
   - See script `wrapper_tabulate_foldedSFS.sh` for how to specify inputs and outputs
+
+## Step 2: Compute mutation rate from divergence
+
+* Use the script `2_compute_mutation_rates/compute_mu_from_divergence.R`
+
