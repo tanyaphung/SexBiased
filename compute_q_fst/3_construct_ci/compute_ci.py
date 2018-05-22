@@ -38,15 +38,15 @@ def main():
 	# Compute the 95% confidence interval
 	alpha = 0.95
 	p = ((1.0 - alpha) / 2.0) * 100
-	lower = max(0.0, np.nanpercentile(qfst_bt, p))
+	lower = np.nanpercentile(qfst_bt, p)
 	p = (alpha + ((1.0 - alpha) / 2.0)) * 100
-	upper = min(1.0, np.nanpercentile(qfst_bt, p))
-
+	upper = np.nanpercentile(qfst_bt, p)
+    #
 	# Set up the output file
 	outfile = open(args.outfile, 'w')
 	header = ['lower', 'upper']
 	outfile.write('\t'.join(header) + '\n')
-
+    #
 	to_print = [str(lower), str(upper)]
 	outfile.write('\t'.join(to_print) + '\n')
 
