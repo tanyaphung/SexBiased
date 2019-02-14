@@ -49,3 +49,26 @@ pwd
 
 * Use the script `4_construct_ci/compute_ci.py`
   - See wrapper script `wrapper_compute_ci.sh` for how to specify inputs and outputs
+  
+  ## Temporary Step 5: Revise how to calculate uncorrected pi
+  
+  * Use `popgen_tools.py`
+  
+  ```
+  git clone https://github.com/tanyaphung/popgen_tools.git
+  ```
+    - Make sure to install the approporiate Python version and pandas for popgen_tools.py to work. 
+    
+  * Here, we want to calculate pi for each population for each cutoff (in defining putatively neutral regions). Inputs are the vcf files and the bed files specifying putatively neutral regions. 
+  * This is an example of how to run popgen_tools.py to calculate for German Shepherds with cutoff of 1cM:
+  
+  ```
+  python popgen_tools.py --vcf_file vcfs/cutoff_1.0/cutoff_1.0_SV_rmClusterSNP_BiSNP_SV_HardFilter_SV_4GS_5TM_6AW_12BD_6GW_joint_autosomes_HighQualSites_processed.vcf --names_list pop/GS.txt --pi --pi_target --target_bed target_bed/cutoff_1.0/autosomes_cutoff_1.0_putative.neutral_high.qual_alignable.bed --pi_target_out out/cutoff_1.0/GS/A/pi_target_out.txt --pi_target_per_site out/cutoff_0.6/GS/A/pi_target_per_site.txt
+  ```
+    - Then, view the output `pi_target_per_site.txt`:
+    ```
+    cat out/cutoff_1.0/GS/A/pi_target_per_site.txt
+    pi_per_site
+    0.0012329772419216694
+    ```
+    
